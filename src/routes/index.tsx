@@ -667,40 +667,47 @@ function Portfolio() {
       {/* Education & Certifications */}
       <section id="credentials" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Credentials</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Education &amp; certifications</h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.25em] text-primary">Credentials</p>
+              <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Education &amp; certifications</h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">Degree plus verified certifications in WordPress, cloud, DevOps and modern JavaScript.</p>
           </div>
-          <Card className="mt-12 border-border/60 bg-card">
-            <CardContent className="flex items-start gap-4 p-7">
-              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="font-display text-xl">B.Sc. Computer Science (Hons)</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Fatima Jinnah Women University, Rawalpindi — 2020</p>
-              </div>
-            </CardContent>
-          </Card>
-          <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border md:grid-cols-2">
-            {certifications.map((c) => (
-              <a
-                key={c.name}
-                href={c.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-4 bg-card p-6 transition-colors hover:bg-secondary/60"
-              >
-                <div className="flex items-center gap-3">
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <div className="text-sm font-medium">{c.name}</div>
-                    <div className="text-xs text-muted-foreground">{c.issuer}</div>
-                  </div>
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            <Card className="border-border/60 bg-card lg:col-span-1">
+              <CardContent className="flex h-full flex-col items-start gap-4 p-7">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary">
+                  <GraduationCap className="h-5 w-5" />
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-            ))}
+                <div>
+                  <h3 className="font-display text-xl">B.Sc. Computer Science (Hons)</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Fatima Jinnah Women University, Rawalpindi — 2020</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border lg:col-span-2 md:grid-cols-2">
+              {certifications.map((c) => (
+                <a
+                  key={c.name}
+                  href={c.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between gap-4 bg-card p-6 transition-colors hover:bg-secondary/60"
+                >
+                  <div className="flex items-center gap-3">
+                    <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
+                    <div>
+                      <div className="text-sm font-medium">{c.name}</div>
+                      <div className="text-xs text-muted-foreground">{c.issuer}</div>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
