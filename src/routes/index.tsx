@@ -408,6 +408,32 @@ function Portfolio() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section id="testimonials" className="border-t border-border/60 bg-surface/20 py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.25em] text-primary">Client Feedback</p>
+            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What clients say</h2>
+          </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((t) => (
+              <Card key={t.name} className="relative overflow-hidden border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
+                <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/20" />
+                <CardContent className="flex h-full flex-col p-7">
+                  <p className="flex-1 text-sm leading-relaxed text-muted-foreground">“{t.quote}”</p>
+                  <div className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
+                    <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
+                      {t.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+                    </div>
+                    <div className="font-medium">{t.name}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Education & Certifications */}
       <section id="credentials" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
