@@ -506,12 +506,26 @@ function Portfolio() {
           <div>
             <p className="text-sm uppercase tracking-[0.25em] text-primary">About</p>
             <h2 className="mt-4 font-display text-4xl font-medium leading-tight md:text-5xl">
-              End-to-end WordPress work, from custom PHP to Core Web Vitals.
+              End-to-end web work, from custom PHP to Core Web Vitals.
             </h2>
+            <div className="mt-8 hidden rounded-2xl border border-border/60 bg-card p-6 font-mono text-xs leading-relaxed text-muted-foreground lg:block">
+              <div className="flex items-center gap-2 border-b border-border/60 pb-3 text-foreground">
+                <Terminal className="h-4 w-4 text-primary" />
+                <span>developer@hafsa-zulfiqar:~$</span>
+              </div>
+              <div className="mt-3 space-y-1">
+                <span className="text-primary">const</span> <span className="text-accent">hafsa</span> = {"{"}
+                <div className="pl-4">role: <span className="text-primary">"Full Stack Developer"</span>,</div>
+                <div className="pl-4">cms: [<span className="text-primary">"WordPress"</span>, <span className="text-primary">"Magento"</span>, <span className="text-primary">"Joomla"</span>, <span className="text-primary">"WooCommerce"</span>, <span className="text-primary">"Moodle"</span>],</div>
+                <div className="pl-4">stack: [<span className="text-primary">"React"</span>, <span className="text-primary">"Tailwind"</span>, <span className="text-primary">"PHP"</span>, <span className="text-primary">"MySQL"</span>],</div>
+                <div className="pl-4">remote: <span className="text-primary">true</span></div>
+                {"}"};
+              </div>
+            </div>
           </div>
           <div className="space-y-5 leading-relaxed text-muted-foreground">
             <p>
-              WordPress developer with 3+ years building and integrating CMS-based and e-commerce platforms. My work spans WooCommerce store architecture, REST API integrations, role-based checkout workflows, and CMS-to-LMS connections with Moodle and Brancert.
+              Full stack developer with 3+ years building and integrating CMS-based and e-commerce platforms. My work spans WooCommerce store architecture, REST API integrations, role-based checkout workflows, and CMS-to-LMS connections with Moodle and Brancert.
             </p>
             <p>
               That's backed by cloud infrastructure experience on AWS, Azure and Docker/Jenkins CI/CD — comfortable working from custom PHP and MySQL logic through to performance and SEO optimisation in fast-paced, fully remote agency environments.
