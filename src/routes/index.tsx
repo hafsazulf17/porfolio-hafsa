@@ -488,12 +488,14 @@ function Portfolio() {
 
       {/* Stats */}
       <section className="border-y border-border/60 bg-surface/30">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px bg-border md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-6 py-10 md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="bg-background px-6 py-10 text-center">
-              <div className="font-display text-4xl font-semibold gradient-text">{s.value}</div>
-              <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</div>
-            </div>
+            <Card key={s.label} className="border-border/60 bg-card text-center transition-all hover:-translate-y-1 hover:border-primary/50">
+              <CardContent className="p-6">
+                <div className="font-display text-4xl font-semibold gradient-text">{s.value}</div>
+                <div className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
