@@ -221,6 +221,244 @@ const profiles = [
   { label: "Portfolio", url: "https://hafsazulf17.github.io/hafsazulf" },
 ];
 
+const heroSlides = [
+  {
+    id: "intro",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mx-auto mb-8 w-fit">
+          <div className="relative">
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary to-accent opacity-60 blur-lg" />
+            <img
+              src={profileAsset.url}
+              alt="Hafsa Zulfiqar, full stack and CMS developer"
+              width={160}
+              height={160}
+              className="relative h-32 w-32 rounded-full border-2 border-primary/50 object-cover shadow-2xl md:h-40 md:w-40"
+            />
+          </div>
+        </div>
+        <Badge variant="outline" className="mb-6 rounded-full border-primary/40 bg-primary/10 px-4 py-1.5 text-primary">
+          <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available — remote ready
+        </Badge>
+        <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance md:text-6xl lg:text-7xl">
+          Full Stack Developer &amp; <span className="gradient-text">CMS specialist</span> across every platform.
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground text-balance md:text-lg">
+          I'm Hafsa — a full stack developer building with React, Tailwind CSS, PHP and MySQL, and a CMS developer across Magento, Joomla, WooCommerce, Moodle and WordPress.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-6">
+            <a href="#work">View projects <ArrowUpRight className="ml-1 h-4 w-4" /></a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full px-6">
+            <a href="#contact">Get in touch</a>
+          </Button>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "cms",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-primary/15 text-primary">
+          <Layers className="h-10 w-10" />
+        </div>
+        <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-balance md:text-6xl">
+          CMS &amp; e-commerce <span className="gradient-text">expertise</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          End-to-end development across WordPress, WooCommerce, Magento 2, Joomla and Moodle — from custom themes and plugins to checkout workflows and LMS integrations.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {cmsPlatforms.map((p) => (
+            <span key={p} className="rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary">
+              {p}
+            </span>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "projects",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-accent/15 text-accent">
+          <Code2 className="h-10 w-10" />
+        </div>
+        <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-balance md:text-6xl">
+          Live projects, <span className="gradient-text">real results</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          From React portfolios and WooCommerce stores to Magento 2 B2B builds and Moodle LMS integrations — shipped for clients in the US, UK, Canada and Lithuania.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {["React", "Tailwind CSS", "WooCommerce", "Magento 2", "Moodle"].map((t) => (
+            <span key={t} className="rounded-full border border-border/60 bg-secondary/60 px-3.5 py-1.5 text-xs text-muted-foreground">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "testimonial",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <Quote className="mb-6 h-14 w-14 text-primary/40" />
+        <blockquote className="max-w-3xl font-display text-2xl font-medium leading-relaxed text-balance md:text-4xl">
+          “Hafsa is one of the best people I've worked with. She is quick, reliable and pays attention to detail. Highly recommended.”
+        </blockquote>
+        <div className="mt-8 flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
+            NP
+          </div>
+          <span className="font-medium">Nigel Pengelly</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "contact",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-primary/15 text-primary">
+          <Mail className="h-10 w-10" />
+        </div>
+        <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-balance md:text-6xl">
+          Let's build something <span className="gradient-text">exceptional</span>.
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          Have a WordPress or WooCommerce project, an API integration, or a site that needs rescuing? I'd love to hear from you.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-6">
+            <a href="mailto:zulfiqar277hafsa.ha@gmail.com"><Mail className="mr-2 h-4 w-4" /> Email me</a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full px-6">
+            <a href="https://wa.me/923212578595" target="_blank" rel="noreferrer"><Phone className="mr-2 h-4 w-4" /> +92 321 2578595</a>
+          </Button>
+        </div>
+      </div>
+    ),
+  },
+];
+
+function HeroSlideshow() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const next = useCallback(() => setActive((i) => (i + 1) % heroSlides.length), []);
+  const prev = useCallback(() => setActive((i) => (i - 1 + heroSlides.length) % heroSlides.length), []);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(next, 6000);
+    return () => clearInterval(id);
+  }, [paused, next]);
+
+  return (
+    <section
+      id="top"
+      className="relative overflow-hidden pt-36 pb-24"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <img
+        src={codeBg}
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 h-full w-full object-cover opacity-35"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+      <div className="absolute inset-0 bg-mesh opacity-40" />
+      <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
+      <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-accent/20 blur-[110px]" />
+
+      {/* Floating objects */}
+      <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+        <div className="float-y absolute left-[8%] top-40 grid h-14 w-14 place-items-center rounded-2xl glass border border-primary/30 text-primary">
+          <Terminal className="h-6 w-6" />
+        </div>
+        <div className="float-slow absolute right-[10%] top-56 grid h-14 w-14 place-items-center rounded-2xl glass border border-accent/30 text-accent">
+          <Database className="h-6 w-6" />
+        </div>
+        <div className="float-slow absolute left-[14%] bottom-16 rounded-full glass border border-primary/25 px-4 py-2 font-mono text-xs text-primary">
+          &lt;/&gt; full-stack
+        </div>
+        <div className="float-y absolute right-[14%] bottom-24 grid h-12 w-12 place-items-center rounded-xl glass border border-primary/25 text-primary">
+          <Cloud className="h-5 w-5" />
+        </div>
+      </div>
+
+      <div className="relative mx-auto min-h-[480px] max-w-5xl px-6 md:min-h-[420px]">
+        {heroSlides.map((slide, i) => (
+          <div
+            key={slide.id}
+            className={`transition-all duration-700 ease-out ${
+              i === active
+                ? "pointer-events-auto relative opacity-100 translate-y-0"
+                : "pointer-events-none absolute inset-0 opacity-0 translate-y-4"
+            }`}
+            aria-hidden={i !== active}
+          >
+            {slide.content}
+          </div>
+        ))}
+      </div>
+
+      {/* Controls */}
+      <div className="relative mx-auto mt-10 flex max-w-6xl items-center justify-center gap-4 px-6">
+        <button
+          onClick={prev}
+          aria-label="Previous slide"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 bg-background/70 text-foreground backdrop-blur-md transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active ? "w-6 bg-primary" : "w-2 bg-muted-foreground/40 hover:bg-muted-foreground/70"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => setPaused((p) => !p)}
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 bg-background/70 text-foreground backdrop-blur-md transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+        </button>
+
+        <button
+          onClick={next}
+          aria-label="Next slide"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 bg-background/70 text-foreground backdrop-blur-md transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div className="relative mx-auto mt-6 max-w-6xl px-6 text-center text-sm text-muted-foreground">
+        <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> 190 Visa (Australia) — full working rights</span>
+      </div>
+    </section>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
