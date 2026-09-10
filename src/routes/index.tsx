@@ -12,24 +12,30 @@ import {
   GraduationCap,
   BadgeCheck,
   MapPin,
+  Layers,
+  Terminal,
+  Database,
+  Cloud,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import profileAsset from "@/assets/hafsa.jpg.asset.json";
+import codeBg from "@/assets/code-bg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hafsa Zulfiqar — WordPress & WooCommerce Developer" },
+      { title: "Hafsa Zulfiqar — Full Stack & CMS Developer" },
       {
         name: "description",
         content:
-          "WordPress & WooCommerce developer specialising in API integrations, cloud deployment, on-page SEO and Core Web Vitals. 3+ years with clients in the US, UK, Canada and Lithuania.",
+          "Full stack developer and CMS specialist across Magento, Joomla, WooCommerce, Moodle and WordPress — API integrations, React/Tailwind builds, cloud deployment and SEO performance.",
       },
-      { property: "og:title", content: "Hafsa Zulfiqar — WordPress & WooCommerce Developer" },
+      { property: "og:title", content: "Hafsa Zulfiqar — Full Stack & CMS Developer" },
       {
         property: "og:description",
-        content: "API integrations, WooCommerce builds, cloud deployment and SEO performance work.",
+        content: "Magento, Joomla, WooCommerce, Moodle and WordPress builds, plus React & Tailwind front-ends.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,18 +45,25 @@ export const Route = createFileRoute("/")({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),
   component: Portfolio,
 });
 
+const cmsPlatforms = ["WordPress", "WooCommerce", "Magento", "Joomla", "Moodle"];
+
 const competencies = [
+  {
+    icon: Layers,
+    title: "CMS Development",
+    items: ["WordPress", "WooCommerce", "Magento 2", "Joomla", "Moodle LMS", "Theme & plugin development"],
+  },
   {
     icon: Server,
     title: "Backend & Integrations",
-    items: ["PHP", "MySQL", "Moodle REST API", "Brancert API", "Role-based dashboards", "Catalogue migration"],
+    items: ["PHP", "MySQL", "Node.js", "Moodle REST API", "Brancert API", "Role-based dashboards"],
   },
   {
     icon: ShoppingCart,
@@ -79,6 +92,12 @@ const stats = [
 ];
 
 const projects = [
+  {
+    name: "Azeem — Structural Engineer Portfolio",
+    url: "https://hafsazulf17.github.io/azeem/",
+    tag: "React + Tailwind CSS",
+    desc: "Modern single-page portfolio for a structural engineer, built with React and Tailwind CSS — responsive sections, smooth scrolling and a clean component-driven layout.",
+  },
   {
     name: "Targheeb",
     url: "https://targheeb.com/",
