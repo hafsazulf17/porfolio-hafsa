@@ -16,6 +16,7 @@ import {
   Terminal,
   Database,
   Cloud,
+  Quote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -154,6 +155,49 @@ const projects = [
   },
 ];
 
+const testimonials = [
+  {
+    name: "Mike Catignani",
+    quote: "Hafsa did an amazing job for us, quick and efficient. Where we wanted to self-maintain we have been given training in how to do that, so we are delighted — good job.",
+  },
+  {
+    name: "Nigel Pengelly",
+    quote: "Hafsa is one of the best people I've worked with on People Per Hour. She is quick, reliable and pays attention to detail. I had some complex WordPress issues that Hafsa completed without issue. Highly recommended.",
+  },
+  {
+    name: "Schez G",
+    quote: "Hafsa is a true gem, highly skilled and professional.",
+  },
+  {
+    name: "Janet Njau",
+    quote: "Hafsa was amazing to work with. She delivered efficiently and promptly. Will work with her again. Amazing work by Hafsa!",
+  },
+  {
+    name: "Awad Ahmed",
+    quote: "Great job, worked well and adjusted with the changes needed to deliver a good product in the end.",
+  },
+  {
+    name: "Constantin Militaru",
+    quote: "Fantastic to work with. Very knowledgeable about WordPress customisation. She implemented our requests in record time perfectly. Highly recommended.",
+  },
+  {
+    name: "Bader Nh",
+    quote: "Very good freelancer. She is a master of WordPress!",
+  },
+  {
+    name: "Joseph Hogan",
+    quote: "Hafsa was very helpful with my project, and helped work through unforeseen problems. I hope to work with her on a future project.",
+  },
+  {
+    name: "William A",
+    quote: "Hafsa has provided a great service, would recommend her.",
+  },
+  {
+    name: "Worktop Compare",
+    quote: "Great job, thanks.",
+  },
+];
+
 const certifications = [
   { name: "WordPress Essential Training", issuer: "LinkedIn Learning", url: "https://www.linkedin.com/learning/certificates/7561e47ae894f208bd1465b7acf7ff6b33625455110acff3a2e6165918b16f77?integrationType=lilApp" },
   { name: "Microsoft Azure Essentials", issuer: "LinkedIn Learning", url: "https://www.linkedin.com/learning/certificates/0ca5b3b865f8fd648752a69d0e3c73b53c2ef3bb4ec42ea5e4055c56561f7137?integrationType=lilApp" },
@@ -186,6 +230,7 @@ function Portfolio() {
             <a href="#about" className="transition-colors hover:text-foreground">About</a>
             <a href="#skills" className="transition-colors hover:text-foreground">Skills</a>
             <a href="#work" className="transition-colors hover:text-foreground">Projects</a>
+            <a href="#testimonials" className="transition-colors hover:text-foreground">Testimonials</a>
             <a href="#credentials" className="transition-colors hover:text-foreground">Credentials</a>
           </div>
           <Button asChild size="sm" className="rounded-full">
@@ -360,6 +405,32 @@ function Portfolio() {
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials" className="border-t border-border/60 bg-surface/20 py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.25em] text-primary">Client Feedback</p>
+            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What clients say</h2>
+          </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((t) => (
+              <Card key={t.name} className="relative overflow-hidden border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
+                <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/20" />
+                <CardContent className="flex h-full flex-col p-7">
+                  <p className="flex-1 text-sm leading-relaxed text-muted-foreground">“{t.quote}”</p>
+                  <div className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
+                    <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
+                      {t.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+                    </div>
+                    <div className="font-medium">{t.name}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
