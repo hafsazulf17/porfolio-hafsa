@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect, useCallback } from "react";
 import {
   ArrowUpRight,
   Mail,
@@ -17,6 +18,10 @@ import {
   Database,
   Cloud,
   Quote,
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -216,6 +221,277 @@ const profiles = [
   { label: "Portfolio", url: "https://hafsazulf17.github.io/hafsazulf" },
 ];
 
+const heroSlides = [
+  {
+    id: "intro",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mx-auto mb-8 w-fit">
+          <div className="relative">
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary to-accent opacity-60 blur-lg" />
+            <img
+              src={profileAsset.url}
+              alt="Hafsa Zulfiqar, full stack and CMS developer"
+              width={160}
+              height={160}
+              className="relative h-32 w-32 rounded-full border-2 border-primary/50 object-cover shadow-2xl md:h-40 md:w-40"
+            />
+          </div>
+        </div>
+        <Badge variant="outline" className="mb-6 rounded-full border-primary/40 bg-primary/10 px-4 py-1.5 text-primary">
+          <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available — remote ready
+        </Badge>
+        <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance md:text-6xl lg:text-7xl">
+          Full Stack Developer &amp; <span className="gradient-text">CMS specialist</span> across every platform.
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground text-balance md:text-lg">
+          I'm Hafsa — a full stack developer building with React, Tailwind CSS, PHP and MySQL, and a CMS developer across Magento, Joomla, WooCommerce, Moodle and WordPress.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-6">
+            <a href="#work">View projects <ArrowUpRight className="ml-1 h-4 w-4" /></a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full px-6">
+            <a href="#contact">Get in touch</a>
+          </Button>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "cms",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-primary/15 text-primary">
+          <Layers className="h-10 w-10" />
+        </div>
+        <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-balance md:text-6xl">
+          CMS &amp; e-commerce <span className="gradient-text">expertise</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          End-to-end development across WordPress, WooCommerce, Magento 2, Joomla and Moodle — from custom themes and plugins to checkout workflows and LMS integrations.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {cmsPlatforms.map((p) => (
+            <span key={p} className="rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary">
+              {p}
+            </span>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "projects",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-accent/15 text-accent">
+          <Code2 className="h-10 w-10" />
+        </div>
+        <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-balance md:text-6xl">
+          Live projects, <span className="gradient-text">real results</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          From React portfolios and WooCommerce stores to Magento 2 B2B builds and Moodle LMS integrations — shipped for clients in the US, UK, Canada and Lithuania.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {["React", "Tailwind CSS", "WooCommerce", "Magento 2", "Moodle"].map((t) => (
+            <span key={t} className="rounded-full border border-border/60 bg-secondary/60 px-3.5 py-1.5 text-xs text-muted-foreground">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "testimonial",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <Quote className="mb-6 h-14 w-14 text-primary/40" />
+        <blockquote className="max-w-3xl font-display text-2xl font-medium leading-relaxed text-balance md:text-4xl">
+          “Hafsa is one of the best people I've worked with. She is quick, reliable and pays attention to detail. Highly recommended.”
+        </blockquote>
+        <div className="mt-8 flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
+            NP
+          </div>
+          <span className="font-medium">Nigel Pengelly</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "contact",
+    content: (
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-primary/15 text-primary">
+          <Mail className="h-10 w-10" />
+        </div>
+        <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-balance md:text-6xl">
+          Let's build something <span className="gradient-text">exceptional</span>.
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          Have a WordPress or WooCommerce project, an API integration, or a site that needs rescuing? I'd love to hear from you.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-6">
+            <a href="mailto:zulfiqar277hafsa.ha@gmail.com"><Mail className="mr-2 h-4 w-4" /> Email me</a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full px-6">
+            <a href="https://wa.me/923212578595" target="_blank" rel="noreferrer"><Phone className="mr-2 h-4 w-4" /> +92 321 2578595</a>
+          </Button>
+        </div>
+      </div>
+    ),
+  },
+];
+
+function HeroSlideshow() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const next = useCallback(() => setActive((i) => (i + 1) % heroSlides.length), []);
+  const prev = useCallback(() => setActive((i) => (i - 1 + heroSlides.length) % heroSlides.length), []);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(next, 6000);
+    return () => clearInterval(id);
+  }, [paused, next]);
+
+  return (
+    <section
+      id="top"
+      className="relative overflow-hidden pt-36 pb-24"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <img
+        src={codeBg}
+        alt=""
+        aria-hidden="true"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 h-full w-full object-cover opacity-35"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+      <div className="absolute inset-0 bg-mesh opacity-40" />
+      <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
+      <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-accent/20 blur-[110px]" />
+
+      {/* Floating objects */}
+      <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+        <div className="float-y absolute left-[8%] top-40 grid h-14 w-14 place-items-center rounded-2xl glass border border-primary/30 text-primary">
+          <Terminal className="h-6 w-6" />
+        </div>
+        <div className="float-slow absolute right-[10%] top-56 grid h-14 w-14 place-items-center rounded-2xl glass border border-accent/30 text-accent">
+          <Database className="h-6 w-6" />
+        </div>
+        <div className="float-slow absolute left-[14%] bottom-16 rounded-full glass border border-primary/25 px-4 py-2 font-mono text-xs text-primary">
+          &lt;/&gt; full-stack
+        </div>
+        <div className="float-y absolute right-[14%] bottom-24 grid h-12 w-12 place-items-center rounded-xl glass border border-primary/25 text-primary">
+          <Cloud className="h-5 w-5" />
+        </div>
+      </div>
+
+      <div className="relative mx-auto min-h-[480px] max-w-5xl px-6 md:min-h-[420px]">
+        {heroSlides.map((slide, i) => (
+          <div
+            key={slide.id}
+            className={`transition-all duration-700 ease-out ${
+              i === active
+                ? "pointer-events-auto relative opacity-100 translate-y-0"
+                : "pointer-events-none absolute inset-0 opacity-0 translate-y-4"
+            }`}
+            aria-hidden={i !== active}
+          >
+            {slide.content}
+          </div>
+        ))}
+      </div>
+
+      {/* Controls */}
+      <div className="relative mx-auto mt-10 flex max-w-6xl items-center justify-center gap-4 px-6">
+        <button
+          onClick={prev}
+          aria-label="Previous slide"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 bg-background/70 text-foreground backdrop-blur-md transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active ? "w-6 bg-primary" : "w-2 bg-muted-foreground/40 hover:bg-muted-foreground/70"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => setPaused((p) => !p)}
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 bg-background/70 text-foreground backdrop-blur-md transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+        </button>
+
+        <button
+          onClick={next}
+          aria-label="Next slide"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 bg-background/70 text-foreground backdrop-blur-md transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div className="relative mx-auto mt-6 max-w-6xl px-6 text-center text-sm text-muted-foreground">
+        <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> 190 Visa (Australia) — full working rights</span>
+      </div>
+    </section>
+  );
+}
+
+function TestimonialGrid() {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? testimonials : testimonials.slice(0, 6);
+
+  return (
+    <>
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {visible.map((t) => (
+          <Card key={t.name} className="relative overflow-hidden border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
+            <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/20" />
+            <CardContent className="flex h-full flex-col p-7">
+              <p className="flex-1 text-sm leading-relaxed text-muted-foreground">“{t.quote}”</p>
+              <div className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
+                <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
+                  {t.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+                </div>
+                <div className="font-medium">{t.name}</div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      {testimonials.length > 6 && (
+        <div className="mt-10 text-center">
+          <Button variant="outline" onClick={() => setShowAll((s) => !s)} className="rounded-full px-6">
+            {showAll ? "Show less" : `Show all ${testimonials.length} testimonials`}
+          </Button>
+        </div>
+      )}
+    </>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -239,89 +515,20 @@ function Portfolio() {
         </nav>
       </header>
 
-      {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-36 pb-24">
-        <img
-          src={codeBg}
-          alt=""
-          aria-hidden="true"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
-        <div className="absolute inset-0 bg-mesh opacity-40" />
-        <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-accent/20 blur-[110px]" />
-
-        {/* Floating objects */}
-        <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-          <div className="float-y absolute left-[8%] top-40 grid h-14 w-14 place-items-center rounded-2xl glass border border-primary/30 text-primary">
-            <Terminal className="h-6 w-6" />
-          </div>
-          <div className="float-slow absolute right-[10%] top-56 grid h-14 w-14 place-items-center rounded-2xl glass border border-accent/30 text-accent">
-            <Database className="h-6 w-6" />
-          </div>
-          <div className="float-slow absolute left-[14%] bottom-16 rounded-full glass border border-primary/25 px-4 py-2 font-mono text-xs text-primary">
-            &lt;/&gt; full-stack
-          </div>
-          <div className="float-y absolute right-[14%] bottom-24 grid h-12 w-12 place-items-center rounded-xl glass border border-primary/25 text-primary">
-            <Cloud className="h-5 w-5" />
-          </div>
-        </div>
-
-        <div className="relative mx-auto max-w-5xl px-6 text-center">
-          <div className="mx-auto mb-8 w-fit">
-            <div className="relative">
-              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary to-accent opacity-60 blur-lg" />
-              <img
-                src={profileAsset.url}
-                alt="Hafsa Zulfiqar, full stack and CMS developer"
-                width={160}
-                height={160}
-                className="relative h-36 w-36 rounded-full border-2 border-primary/50 object-cover shadow-2xl md:h-40 md:w-40"
-              />
-            </div>
-          </div>
-          <Badge variant="outline" className="mb-6 rounded-full border-primary/40 bg-primary/10 px-4 py-1.5 text-primary">
-            <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available — remote ready
-          </Badge>
-          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-balance md:text-7xl">
-            Full Stack Developer &amp; <span className="gradient-text">CMS specialist</span> across every platform.
-          </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground text-balance">
-            I'm Hafsa — a full stack developer building with React, Tailwind CSS, PHP and MySQL, and a CMS developer across Magento, Joomla, WooCommerce, Moodle and WordPress for clients in the US, UK, Canada and Lithuania.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {cmsPlatforms.map((p) => (
-              <span key={p} className="rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary">
-                {p}
-              </span>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild size="lg" className="rounded-full px-6">
-              <a href="#work">View projects <ArrowUpRight className="ml-1 h-4 w-4" /></a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-6">
-              <a href="#contact">Get in touch</a>
-            </Button>
-          </div>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> 190 Visa (Australia) — full working rights</span>
-          </div>
-        </div>
-      </section>
+      {/* Hero Slideshow */}
+      <HeroSlideshow />
 
 
       {/* Stats */}
       <section className="border-y border-border/60 bg-surface/30">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px bg-border md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-6 py-10 md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="bg-background px-6 py-10 text-center">
-              <div className="font-display text-4xl font-semibold gradient-text">{s.value}</div>
-              <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</div>
-            </div>
+            <Card key={s.label} className="border-border/60 bg-card text-center transition-all hover:-translate-y-1 hover:border-primary/50">
+              <CardContent className="p-6">
+                <div className="font-display text-4xl font-semibold gradient-text">{s.value}</div>
+                <div className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
@@ -332,12 +539,26 @@ function Portfolio() {
           <div>
             <p className="text-sm uppercase tracking-[0.25em] text-primary">About</p>
             <h2 className="mt-4 font-display text-4xl font-medium leading-tight md:text-5xl">
-              End-to-end WordPress work, from custom PHP to Core Web Vitals.
+              End-to-end web work, from custom PHP to Core Web Vitals.
             </h2>
+            <div className="mt-8 hidden rounded-2xl border border-border/60 bg-card p-6 font-mono text-xs leading-relaxed text-muted-foreground lg:block">
+              <div className="flex items-center gap-2 border-b border-border/60 pb-3 text-foreground">
+                <Terminal className="h-4 w-4 text-primary" />
+                <span>developer@hafsa-zulfiqar:~$</span>
+              </div>
+              <div className="mt-3 space-y-1">
+                <span className="text-primary">const</span> <span className="text-accent">hafsa</span> = {"{"}
+                <div className="pl-4">role: <span className="text-primary">"Full Stack Developer"</span>,</div>
+                <div className="pl-4">cms: [<span className="text-primary">"WordPress"</span>, <span className="text-primary">"Magento"</span>, <span className="text-primary">"Joomla"</span>, <span className="text-primary">"WooCommerce"</span>, <span className="text-primary">"Moodle"</span>],</div>
+                <div className="pl-4">stack: [<span className="text-primary">"React"</span>, <span className="text-primary">"Tailwind"</span>, <span className="text-primary">"PHP"</span>, <span className="text-primary">"MySQL"</span>],</div>
+                <div className="pl-4">remote: <span className="text-primary">true</span></div>
+                {"}"};
+              </div>
+            </div>
           </div>
           <div className="space-y-5 leading-relaxed text-muted-foreground">
             <p>
-              WordPress developer with 3+ years building and integrating CMS-based and e-commerce platforms. My work spans WooCommerce store architecture, REST API integrations, role-based checkout workflows, and CMS-to-LMS connections with Moodle and Brancert.
+              Full stack developer with 3+ years building and integrating CMS-based and e-commerce platforms. My work spans WooCommerce store architecture, REST API integrations, role-based checkout workflows, and CMS-to-LMS connections with Moodle and Brancert.
             </p>
             <p>
               That's backed by cloud infrastructure experience on AWS, Azure and Docker/Jenkins CI/CD — comfortable working from custom PHP and MySQL logic through to performance and SEO optimisation in fast-paced, fully remote agency environments.
@@ -354,11 +575,14 @@ function Portfolio() {
       {/* Competencies */}
       <section id="skills" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Core Competencies</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What I bring to a build</h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.25em] text-primary">Core Competencies</p>
+              <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What I bring to a build</h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">CMS, e-commerce, cloud and front-end skills that cover the full project lifecycle.</p>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {competencies.map((c) => (
               <Card key={c.title} className="group border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
                 <CardContent className="p-7">
@@ -387,8 +611,26 @@ function Portfolio() {
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">Live sites I've built, integrated, or optimised for clients around the world.</p>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
+
+        {/* Featured project */}
+        <a
+          href={projects[0].url}
+          target="_blank"
+          rel="noreferrer"
+          className="group relative mt-14 flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 md:flex-row md:items-center md:gap-10 md:p-10"
+        >
+          <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
+          <div className="relative flex-1">
+            <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">Featured · {projects[0].tag}</Badge>
+            <h3 className="mt-4 font-display text-3xl md:text-4xl">{projects[0].name}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{new URL(projects[0].url).hostname}</p>
+            <p className="mt-4 max-w-xl text-muted-foreground">{projects[0].desc}</p>
+          </div>
+          <ArrowUpRight className="relative mt-6 h-8 w-8 shrink-0 text-primary transition-all group-hover:-translate-y-1 group-hover:translate-x-1 md:mt-0" />
+        </a>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.slice(1).map((p) => (
             <a
               key={p.name}
               href={p.url}
@@ -411,66 +653,61 @@ function Portfolio() {
       {/* Testimonials */}
       <section id="testimonials" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Client Feedback</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What clients say</h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.25em] text-primary">Client Feedback</p>
+              <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What clients say</h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">Feedback from clients on People Per Hour, Upwork and direct contracts around the world.</p>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t) => (
-              <Card key={t.name} className="relative overflow-hidden border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
-                <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/20" />
-                <CardContent className="flex h-full flex-col p-7">
-                  <p className="flex-1 text-sm leading-relaxed text-muted-foreground">“{t.quote}”</p>
-                  <div className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
-                    <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
-                      {t.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
-                    </div>
-                    <div className="font-medium">{t.name}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <TestimonialGrid />
         </div>
       </section>
 
       {/* Education & Certifications */}
       <section id="credentials" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Credentials</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Education &amp; certifications</h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.25em] text-primary">Credentials</p>
+              <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Education &amp; certifications</h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">Degree plus verified certifications in WordPress, cloud, DevOps and modern JavaScript.</p>
           </div>
-          <Card className="mt-12 border-border/60 bg-card">
-            <CardContent className="flex items-start gap-4 p-7">
-              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="font-display text-xl">B.Sc. Computer Science (Hons)</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Fatima Jinnah Women University, Rawalpindi — 2020</p>
-              </div>
-            </CardContent>
-          </Card>
-          <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border md:grid-cols-2">
-            {certifications.map((c) => (
-              <a
-                key={c.name}
-                href={c.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-4 bg-card p-6 transition-colors hover:bg-secondary/60"
-              >
-                <div className="flex items-center gap-3">
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <div className="text-sm font-medium">{c.name}</div>
-                    <div className="text-xs text-muted-foreground">{c.issuer}</div>
-                  </div>
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            <Card className="border-border/60 bg-card lg:col-span-1">
+              <CardContent className="flex h-full flex-col items-start gap-4 p-7">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary">
+                  <GraduationCap className="h-5 w-5" />
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-            ))}
+                <div>
+                  <h3 className="font-display text-xl">B.Sc. Computer Science (Hons)</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Fatima Jinnah Women University, Rawalpindi — 2020</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border lg:col-span-2 md:grid-cols-2">
+              {certifications.map((c) => (
+                <a
+                  key={c.name}
+                  href={c.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between gap-4 bg-card p-6 transition-colors hover:bg-secondary/60"
+                >
+                  <div className="flex items-center gap-3">
+                    <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
+                    <div>
+                      <div className="text-sm font-medium">{c.name}</div>
+                      <div className="text-xs text-muted-foreground">{c.issuer}</div>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
