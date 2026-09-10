@@ -542,11 +542,14 @@ function Portfolio() {
       {/* Competencies */}
       <section id="skills" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Core Competencies</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What I bring to a build</h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.25em] text-primary">Core Competencies</p>
+              <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What I bring to a build</h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">CMS, e-commerce, cloud and front-end skills that cover the full project lifecycle.</p>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {competencies.map((c) => (
               <Card key={c.title} className="group border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
                 <CardContent className="p-7">
