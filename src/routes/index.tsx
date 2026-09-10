@@ -82,7 +82,7 @@ const competencies = [
   },
 ];
 
-const frontendSkills = ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "React.js"];
+const frontendSkills = ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "React.js", "Tailwind CSS"];
 
 const stats = [
   { value: "3+", label: "Years Developing" },
@@ -195,19 +195,65 @@ function Portfolio() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-40 pb-24">
-        <div className="absolute inset-0 bg-grain opacity-40" />
+      <section id="top" className="relative overflow-hidden pt-36 pb-24">
+        <img
+          src={codeBg}
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 h-full w-full object-cover opacity-35"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+        <div className="absolute inset-0 bg-mesh opacity-40" />
         <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
+        <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-accent/20 blur-[110px]" />
+
+        {/* Floating objects */}
+        <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+          <div className="float-y absolute left-[8%] top-40 grid h-14 w-14 place-items-center rounded-2xl glass border border-primary/30 text-primary">
+            <Terminal className="h-6 w-6" />
+          </div>
+          <div className="float-slow absolute right-[10%] top-56 grid h-14 w-14 place-items-center rounded-2xl glass border border-accent/30 text-accent">
+            <Database className="h-6 w-6" />
+          </div>
+          <div className="float-slow absolute left-[14%] bottom-16 rounded-full glass border border-primary/25 px-4 py-2 font-mono text-xs text-primary">
+            &lt;/&gt; full-stack
+          </div>
+          <div className="float-y absolute right-[14%] bottom-24 grid h-12 w-12 place-items-center rounded-xl glass border border-primary/25 text-primary">
+            <Cloud className="h-5 w-5" />
+          </div>
+        </div>
+
         <div className="relative mx-auto max-w-5xl px-6 text-center">
+          <div className="mx-auto mb-8 w-fit">
+            <div className="relative">
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary to-accent opacity-60 blur-lg" />
+              <img
+                src={profileAsset.url}
+                alt="Hafsa Zulfiqar, full stack and CMS developer"
+                width={160}
+                height={160}
+                className="relative h-36 w-36 rounded-full border-2 border-primary/50 object-cover shadow-2xl md:h-40 md:w-40"
+              />
+            </div>
+          </div>
           <Badge variant="outline" className="mb-6 rounded-full border-primary/40 bg-primary/10 px-4 py-1.5 text-primary">
             <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available — remote ready
           </Badge>
-          <h1 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-balance md:text-7xl">
-            WordPress &amp; WooCommerce builds that <span className="gradient-text italic">integrate</span> and <span className="gradient-text italic">perform</span>.
+          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-balance md:text-7xl">
+            Full Stack Developer &amp; <span className="gradient-text">CMS specialist</span> across every platform.
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground text-balance">
-            I'm Hafsa — a WordPress developer specialising in API integrations, custom checkout workflows, cloud deployment and on-page SEO for clients across the US, UK, Canada and Lithuania.
+            I'm Hafsa — a full stack developer building with React, Tailwind CSS, PHP and MySQL, and a CMS developer across Magento, Joomla, WooCommerce, Moodle and WordPress for clients in the US, UK, Canada and Lithuania.
           </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {cmsPlatforms.map((p) => (
+              <span key={p} className="rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary">
+                {p}
+              </span>
+            ))}
+          </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="rounded-full px-6">
               <a href="#work">View projects <ArrowUpRight className="ml-1 h-4 w-4" /></a>
@@ -221,6 +267,7 @@ function Portfolio() {
           </div>
         </div>
       </section>
+
 
       {/* Stats */}
       <section className="border-y border-border/60 bg-surface/30">
