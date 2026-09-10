@@ -578,8 +578,26 @@ function Portfolio() {
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">Live sites I've built, integrated, or optimised for clients around the world.</p>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
+
+        {/* Featured project */}
+        <a
+          href={projects[0].url}
+          target="_blank"
+          rel="noreferrer"
+          className="group relative mt-14 flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 md:flex-row md:items-center md:gap-10 md:p-10"
+        >
+          <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
+          <div className="relative flex-1">
+            <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">Featured · {projects[0].tag}</Badge>
+            <h3 className="mt-4 font-display text-3xl md:text-4xl">{projects[0].name}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{new URL(projects[0].url).hostname}</p>
+            <p className="mt-4 max-w-xl text-muted-foreground">{projects[0].desc}</p>
+          </div>
+          <ArrowUpRight className="relative mt-6 h-8 w-8 shrink-0 text-primary transition-all group-hover:-translate-y-1 group-hover:translate-x-1 md:mt-0" />
+        </a>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.slice(1).map((p) => (
             <a
               key={p.name}
               href={p.url}
