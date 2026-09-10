@@ -12,24 +12,30 @@ import {
   GraduationCap,
   BadgeCheck,
   MapPin,
+  Layers,
+  Terminal,
+  Database,
+  Cloud,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import profileAsset from "@/assets/hafsa.jpg.asset.json";
+import codeBg from "@/assets/code-bg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hafsa Zulfiqar — WordPress & WooCommerce Developer" },
+      { title: "Hafsa Zulfiqar — Full Stack & CMS Developer" },
       {
         name: "description",
         content:
-          "WordPress & WooCommerce developer specialising in API integrations, cloud deployment, on-page SEO and Core Web Vitals. 3+ years with clients in the US, UK, Canada and Lithuania.",
+          "Full stack developer and CMS specialist across Magento, Joomla, WooCommerce, Moodle and WordPress — API integrations, React/Tailwind builds, cloud deployment and SEO performance.",
       },
-      { property: "og:title", content: "Hafsa Zulfiqar — WordPress & WooCommerce Developer" },
+      { property: "og:title", content: "Hafsa Zulfiqar — Full Stack & CMS Developer" },
       {
         property: "og:description",
-        content: "API integrations, WooCommerce builds, cloud deployment and SEO performance work.",
+        content: "Magento, Joomla, WooCommerce, Moodle and WordPress builds, plus React & Tailwind front-ends.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,18 +45,25 @@ export const Route = createFileRoute("/")({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),
   component: Portfolio,
 });
 
+const cmsPlatforms = ["WordPress", "WooCommerce", "Magento", "Joomla", "Moodle"];
+
 const competencies = [
+  {
+    icon: Layers,
+    title: "CMS Development",
+    items: ["WordPress", "WooCommerce", "Magento 2", "Joomla", "Moodle LMS", "Theme & plugin development"],
+  },
   {
     icon: Server,
     title: "Backend & Integrations",
-    items: ["PHP", "MySQL", "Moodle REST API", "Brancert API", "Role-based dashboards", "Catalogue migration"],
+    items: ["PHP", "MySQL", "Node.js", "Moodle REST API", "Brancert API", "Role-based dashboards"],
   },
   {
     icon: ShoppingCart,
@@ -69,7 +82,7 @@ const competencies = [
   },
 ];
 
-const frontendSkills = ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "React.js"];
+const frontendSkills = ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "React.js", "Tailwind CSS"];
 
 const stats = [
   { value: "3+", label: "Years Developing" },
@@ -79,6 +92,12 @@ const stats = [
 ];
 
 const projects = [
+  {
+    name: "Azeem — Structural Engineer Portfolio",
+    url: "https://hafsazulf17.github.io/azeem/",
+    tag: "React + Tailwind CSS",
+    desc: "Modern single-page portfolio for a structural engineer, built with React and Tailwind CSS — responsive sections, smooth scrolling and a clean component-driven layout.",
+  },
   {
     name: "Targheeb",
     url: "https://targheeb.com/",
@@ -176,19 +195,65 @@ function Portfolio() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-40 pb-24">
-        <div className="absolute inset-0 bg-grain opacity-40" />
+      <section id="top" className="relative overflow-hidden pt-36 pb-24">
+        <img
+          src={codeBg}
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 h-full w-full object-cover opacity-35"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+        <div className="absolute inset-0 bg-mesh opacity-40" />
         <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
+        <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-accent/20 blur-[110px]" />
+
+        {/* Floating objects */}
+        <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+          <div className="float-y absolute left-[8%] top-40 grid h-14 w-14 place-items-center rounded-2xl glass border border-primary/30 text-primary">
+            <Terminal className="h-6 w-6" />
+          </div>
+          <div className="float-slow absolute right-[10%] top-56 grid h-14 w-14 place-items-center rounded-2xl glass border border-accent/30 text-accent">
+            <Database className="h-6 w-6" />
+          </div>
+          <div className="float-slow absolute left-[14%] bottom-16 rounded-full glass border border-primary/25 px-4 py-2 font-mono text-xs text-primary">
+            &lt;/&gt; full-stack
+          </div>
+          <div className="float-y absolute right-[14%] bottom-24 grid h-12 w-12 place-items-center rounded-xl glass border border-primary/25 text-primary">
+            <Cloud className="h-5 w-5" />
+          </div>
+        </div>
+
         <div className="relative mx-auto max-w-5xl px-6 text-center">
+          <div className="mx-auto mb-8 w-fit">
+            <div className="relative">
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary to-accent opacity-60 blur-lg" />
+              <img
+                src={profileAsset.url}
+                alt="Hafsa Zulfiqar, full stack and CMS developer"
+                width={160}
+                height={160}
+                className="relative h-36 w-36 rounded-full border-2 border-primary/50 object-cover shadow-2xl md:h-40 md:w-40"
+              />
+            </div>
+          </div>
           <Badge variant="outline" className="mb-6 rounded-full border-primary/40 bg-primary/10 px-4 py-1.5 text-primary">
             <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available — remote ready
           </Badge>
-          <h1 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-balance md:text-7xl">
-            WordPress &amp; WooCommerce builds that <span className="gradient-text italic">integrate</span> and <span className="gradient-text italic">perform</span>.
+          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-balance md:text-7xl">
+            Full Stack Developer &amp; <span className="gradient-text">CMS specialist</span> across every platform.
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground text-balance">
-            I'm Hafsa — a WordPress developer specialising in API integrations, custom checkout workflows, cloud deployment and on-page SEO for clients across the US, UK, Canada and Lithuania.
+            I'm Hafsa — a full stack developer building with React, Tailwind CSS, PHP and MySQL, and a CMS developer across Magento, Joomla, WooCommerce, Moodle and WordPress for clients in the US, UK, Canada and Lithuania.
           </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {cmsPlatforms.map((p) => (
+              <span key={p} className="rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary">
+                {p}
+              </span>
+            ))}
+          </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="rounded-full px-6">
               <a href="#work">View projects <ArrowUpRight className="ml-1 h-4 w-4" /></a>
@@ -202,6 +267,7 @@ function Portfolio() {
           </div>
         </div>
       </section>
+
 
       {/* Stats */}
       <section className="border-y border-border/60 bg-surface/30">
