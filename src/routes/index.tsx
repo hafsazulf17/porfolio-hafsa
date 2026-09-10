@@ -155,6 +155,49 @@ const projects = [
   },
 ];
 
+const testimonials = [
+  {
+    name: "Mike Catignani",
+    quote: "Hafsa did an amazing job for us, quick and efficient. Where we wanted to self-maintain we have been given training in how to do that, so we are delighted — good job.",
+  },
+  {
+    name: "Nigel Pengelly",
+    quote: "Hafsa is one of the best people I've worked with on People Per Hour. She is quick, reliable and pays attention to detail. I had some complex WordPress issues that Hafsa completed without issue. Highly recommended.",
+  },
+  {
+    name: "Schez G",
+    quote: "Hafsa is a true gem, highly skilled and professional.",
+  },
+  {
+    name: "Janet Njau",
+    quote: "Hafsa was amazing to work with. She delivered efficiently and promptly. Will work with her again. Amazing work by Hafsa!",
+  },
+  {
+    name: "Awad Ahmed",
+    quote: "Great job, worked well and adjusted with the changes needed to deliver a good product in the end.",
+  },
+  {
+    name: "Constantin Militaru",
+    quote: "Fantastic to work with. Very knowledgeable about WordPress customisation. She implemented our requests in record time perfectly. Highly recommended.",
+  },
+  {
+    name: "Bader Nh",
+    quote: "Very good freelancer. She is a master of WordPress!",
+  },
+  {
+    name: "Joseph Hogan",
+    quote: "Hafsa was very helpful with my project, and helped work through unforeseen problems. I hope to work with her on a future project.",
+  },
+  {
+    name: "William A",
+    quote: "Hafsa has provided a great service, would recommend her.",
+  },
+  {
+    name: "Worktop Compare",
+    quote: "Great job, thanks.",
+  },
+];
+
 const certifications = [
   { name: "WordPress Essential Training", issuer: "LinkedIn Learning", url: "https://www.linkedin.com/learning/certificates/7561e47ae894f208bd1465b7acf7ff6b33625455110acff3a2e6165918b16f77?integrationType=lilApp" },
   { name: "Microsoft Azure Essentials", issuer: "LinkedIn Learning", url: "https://www.linkedin.com/learning/certificates/0ca5b3b865f8fd648752a69d0e3c73b53c2ef3bb4ec42ea5e4055c56561f7137?integrationType=lilApp" },
