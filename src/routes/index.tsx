@@ -1,5 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Mail, Github, Linkedin, Globe, Code2, Server, Palette, Layers, Award, Briefcase, Users, Sparkles, Quote } from "lucide-react";
+import {
+  ArrowUpRight,
+  Mail,
+  Phone,
+  Linkedin,
+  Globe,
+  Code2,
+  Server,
+  ShoppingCart,
+  Search,
+  GraduationCap,
+  BadgeCheck,
+  MapPin,
+  Quote,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,71 +21,137 @@ import { Badge } from "@/components/ui/badge";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hafsa Zulfiqar — Full Stack Web Developer & WordPress Expert" },
-      { name: "description", content: "Full-stack web developer, WordPress expert, and DevOps engineer. 5+ years building fast, beautiful, secure websites for clients worldwide." },
-      { property: "og:title", content: "Hafsa Zulfiqar — Full Stack Web Developer" },
-      { property: "og:description", content: "Full-stack web developer, WordPress expert, DevOps engineer." },
+      { title: "Hafsa Zulfiqar — WordPress & WooCommerce Developer" },
+      {
+        name: "description",
+        content:
+          "WordPress & WooCommerce developer specialising in API integrations, cloud deployment, on-page SEO and Core Web Vitals. 3+ years with clients in the US, UK, Canada and Lithuania.",
+      },
+      { property: "og:title", content: "Hafsa Zulfiqar — WordPress & WooCommerce Developer" },
+      {
+        property: "og:description",
+        content: "API integrations, WooCommerce builds, cloud deployment and SEO performance work.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   component: Portfolio,
 });
 
-const skills = [
-  { name: "JavaScript", level: 90 },
-  { name: "HTML / CSS", level: 92 },
-  { name: "React.js", level: 78 },
-  { name: "Vue.js", level: 72 },
-  { name: "WordPress", level: 95 },
-  { name: "PHP / Laravel", level: 80 },
-  { name: "jQuery / AJAX", level: 82 },
-  { name: "C# ASP.NET", level: 65 },
+const competencies = [
+  {
+    icon: Server,
+    title: "Backend & Integrations",
+    items: ["PHP", "MySQL", "Moodle REST API", "Brancert API", "Role-based dashboards", "Catalogue migration"],
+  },
+  {
+    icon: ShoppingCart,
+    title: "WordPress & WooCommerce",
+    items: ["Custom child themes", "ACF", "Divi", "Avada", "Elementor Pro", "Custom checkout & pricing"],
+  },
+  {
+    icon: Code2,
+    title: "Cloud & DevOps",
+    items: ["AWS EC2 / RDS / S3 / CloudFront", "Azure", "DigitalOcean", "Docker", "Jenkins CI/CD"],
+  },
+  {
+    icon: Search,
+    title: "SEO & Performance",
+    items: ["Yoast / RankMath", "Schema & meta", "sitemap.xml", "Canonical tags", "Core Web Vitals", "WP Rocket"],
+  },
 ];
 
-const services = [
-  { icon: Code2, title: "Web Development", desc: "Custom websites with WordPress, Magento, Shopify, Laravel — built for performance and scale." },
-  { icon: Server, title: "DevOps & Cloud", desc: "Azure, AWS, Google Cloud setup. CI/CD, deployments, monitoring, hardening." },
-  { icon: Layers, title: "Responsive Design", desc: "Pixel-perfect layouts that look stunning on every device, from mobile to 4K." },
-  { icon: Palette, title: "Graphic Design", desc: "Brand-aligned visuals, landing pages, and design systems with a polished finish." },
-];
+const frontendSkills = ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "React.js"];
 
 const stats = [
-  { value: "50+", label: "Projects Delivered", icon: Briefcase },
-  { value: "5+", label: "Years Experience", icon: Award },
-  { value: "30+", label: "Happy Clients", icon: Users },
-  { value: "10+", label: "Tech Stacks", icon: Sparkles },
+  { value: "3+", label: "Years Developing" },
+  { value: "4", label: "Client Regions" },
+  { value: "8+", label: "Certifications" },
+  { value: "100%", label: "Remote Ready" },
 ];
 
 const projects = [
-  { name: "Targheeb", url: "https://targheeb.com/", tag: "WordPress" },
-  { name: "Acorn Safety Services", url: "https://acornhealthandsafety.co.uk/", tag: "Corporate" },
-  { name: "Unlock My Sim", url: "https://unlockmysim.com/", tag: "E-commerce" },
-  { name: "Re-Pair", url: "https://re-pair.ie/", tag: "Service" },
-  { name: "TCBS Senior School", url: "https://senior.tcbs.sc.ke/", tag: "Education" },
-  { name: "Travel Parenthesis", url: "https://travelparenthesis.com/", tag: "Travel" },
-  { name: "Gold Star Social Media", url: "https://goldstarsocialmedia.com/", tag: "Agency" },
-  { name: "Portafoto", url: "https://portafoto.co.uk/", tag: "Photography" },
-  { name: "H2O Natura", url: "https://h2onatura.net/", tag: "Brand" },
-  { name: "Bren.one", url: "http://bren.one/", tag: "Personal" },
+  {
+    name: "Targheeb",
+    url: "https://targheeb.com/",
+    tag: "LMS Integration",
+    desc: "Connected Moodle LMS to WordPress via API and integrated the Brancert API for live class scheduling with automated student notifications.",
+  },
+  {
+    name: "Gold Star Social Media",
+    url: "https://goldstarsocialmedia.com/",
+    tag: "WooCommerce",
+    desc: "End-to-end WooCommerce digital product store with payment gateway integration and full checkout configuration.",
+  },
+  {
+    name: "Eco2Bureau",
+    url: "https://eco2.ca/",
+    tag: "B2B / Quotes",
+    desc: "Request-a-Quote system for retail and wholesale customers with role-based login, customer dashboards, custom pricing workflows and SuiteCRM setup.",
+  },
+  {
+    name: "Unlock My Sim",
+    url: "https://unlockmysim.com/",
+    tag: "Front-end",
+    desc: "Product pages, detail views and a custom checkout layout delivered through a bespoke child theme.",
+  },
+  {
+    name: "e-Karnizai",
+    url: "https://e-karnizai.lt/",
+    tag: "SEO & Landing Pages",
+    desc: "Elementor Pro landing pages plus Search Console fixes — canonical tags, sitemap updates and 301 redirects that cleared duplicate-URL issues.",
+  },
+  {
+    name: "Acorn Health & Safety",
+    url: "https://acornhealthandsafety.co.uk/",
+    tag: "Genesis Framework",
+    desc: "Corporate site built on the Genesis Framework with a fully custom child theme.",
+  },
+  {
+    name: "TCBS Senior School",
+    url: "https://senior.tcbs.sc.ke/",
+    tag: "Education",
+    desc: "School website built with WordPress and page-builder tooling.",
+  },
+  {
+    name: "TCBS Junior School",
+    url: "https://junior.tcbs.sc.ke/",
+    tag: "Education",
+    desc: "Companion junior-school site sharing the same design system and build approach.",
+  },
+  {
+    name: "Ekelund",
+    url: "https://ekelund.se/",
+    tag: "Magento 2",
+    desc: "Magento 2 theme customisation for a B2C and B2B store, with AWS infrastructure and Jenkins deployments.",
+  },
 ];
 
-const testimonials = [
-  { name: "Mike Catignani", text: "Hafsa did an amazing job for us — quick and efficient. We were given training to self-maintain. Delighted with the work." },
-  { name: "Nigel Pengelly", text: "One of the best developers I've worked with. Quick, reliable, and pays attention to detail. Complex WordPress issues solved without issue." },
-  { name: "Constantin Militaru", text: "Fantastic to work with. Very knowledgeable about WordPress customisation. Implemented our requests in record time, perfectly." },
-  { name: "Bader Nh", text: "Very good freelance. She is a master of WordPress!" },
-  { name: "Schez G", text: "Hafsa is a true gem — highly skilled and professional." },
-  { name: "Janet Njau", text: "Amazing to work with. Delivered efficiently and promptly. Will work with her again." },
+const certifications = [
+  { name: "WordPress Essential Training", issuer: "LinkedIn Learning", url: "https://www.linkedin.com/learning/certificates/7561e47ae894f208bd1465b7acf7ff6b33625455110acff3a2e6165918b16f77?integrationType=lilApp" },
+  { name: "Microsoft Azure Essentials", issuer: "LinkedIn Learning", url: "https://www.linkedin.com/learning/certificates/0ca5b3b865f8fd648752a69d0e3c73b53c2ef3bb4ec42ea5e4055c56561f7137?integrationType=lilApp" },
+  { name: "JavaScript & jQuery + Vue Intro", issuer: "Udemy", url: "https://www.udemy.com/certificate/UC-660058d2-b574-4745-82cd-1632a023b89c/" },
+  { name: "GitLab Ultimate Guide", issuer: "Udemy", url: "https://www.udemy.com/certificate/UC-feb6ccdf-eea3-4afa-a595-31226ba7be92/" },
+  { name: "MERN Stack Deployment on Azure (CI/CD)", issuer: "Udemy", url: "https://www.udemy.com/certificate/UC-10f4432e-f335-4192-b24a-cde3059166e5/" },
+  { name: "Nginx, Apache & SSL Certificates", issuer: "Udemy", url: "https://www.udemy.com/certificate/UC-e33a5efe-09d5-4f65-bc5d-c62e07c277a5/" },
+  { name: "Microsoft Office", issuer: "Credly Badge", url: "https://www.credly.com/badges/3456a896-1cd0-4f63-a659-830eec83d196/public_url" },
+  { name: "Google Cloud Qwiklabs — 5 Quests · Gen AI Intro", issuer: "Google Cloud", url: "https://www.cloudskillsboost.google/" },
 ];
 
-const links = [
+const profiles = [
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/hafsa-zulfiqar-149812160/" },
   { label: "Upwork", url: "https://www.upwork.com/freelancers/~017d31b576065d8a33" },
-  { label: "Freelancer", url: "https://www.freelancer.com/u/hafsazulf17" },
-  { label: "PeoplePerHour", url: "https://www.peopleperhour.com/freelancer/technology-programming/hafsa-zulfiqar_sheikh-wordpress-magento-developer-all-xayvmmm" },
+  { label: "People Per Hour", url: "https://pph.me/hafsazulf" },
+  { label: "Portfolio", url: "https://hafsazulf17.github.io/hafsazulf" },
 ];
 
 function Portfolio() {
@@ -85,10 +165,10 @@ function Portfolio() {
             <span>Hafsa Zulfiqar</span>
           </a>
           <div className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-            <a href="#about" className="hover:text-foreground transition-colors">About</a>
-            <a href="#services" className="hover:text-foreground transition-colors">Services</a>
-            <a href="#work" className="hover:text-foreground transition-colors">Work</a>
-            <a href="#testimonials" className="hover:text-foreground transition-colors">Testimonials</a>
+            <a href="#about" className="transition-colors hover:text-foreground">About</a>
+            <a href="#skills" className="transition-colors hover:text-foreground">Skills</a>
+            <a href="#work" className="transition-colors hover:text-foreground">Projects</a>
+            <a href="#credentials" className="transition-colors hover:text-foreground">Credentials</a>
           </div>
           <Button asChild size="sm" className="rounded-full">
             <a href="#contact">Hire me <ArrowUpRight className="ml-1 h-4 w-4" /></a>
@@ -97,29 +177,29 @@ function Portfolio() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative overflow-hidden pt-40 pb-28">
+      <section id="top" className="relative overflow-hidden pt-40 pb-24">
         <div className="absolute inset-0 bg-grain opacity-40" />
         <div className="absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <Badge variant="outline" className="mb-6 rounded-full border-primary/40 bg-primary/10 px-4 py-1.5 text-primary">
-            <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available for freelance projects
+            <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse" /> Available — remote ready
           </Badge>
-          <h1 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-balance md:text-7xl lg:text-8xl">
-            Crafting websites that <span className="gradient-text italic">perform</span> and <span className="gradient-text italic">delight</span>.
+          <h1 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-balance md:text-7xl">
+            WordPress &amp; WooCommerce builds that <span className="gradient-text italic">integrate</span> and <span className="gradient-text italic">perform</span>.
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground text-balance">
-            I'm Hafsa — a full-stack web developer, WordPress expert, and DevOps engineer helping brands ship fast, beautiful, secure products.
+            I'm Hafsa — a WordPress developer specialising in API integrations, custom checkout workflows, cloud deployment and on-page SEO for clients across the US, UK, Canada and Lithuania.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="rounded-full px-6">
-              <a href="#work">View my work <ArrowUpRight className="ml-1 h-4 w-4" /></a>
+              <a href="#work">View projects <ArrowUpRight className="ml-1 h-4 w-4" /></a>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full px-6">
               <a href="#contact">Get in touch</a>
             </Button>
           </div>
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            <span>WordPress</span><span>•</span><span>React</span><span>•</span><span>Laravel</span><span>•</span><span>Shopify</span><span>•</span><span>AWS</span>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> 190 Visa (Australia) — full working rights</span>
           </div>
         </div>
       </section>
@@ -129,7 +209,6 @@ function Portfolio() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px bg-border md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-background px-6 py-10 text-center">
-              <s.icon className="mx-auto mb-3 h-5 w-5 text-primary" />
               <div className="font-display text-4xl font-semibold gradient-text">{s.value}</div>
               <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</div>
             </div>
@@ -137,67 +216,51 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* About + Skills */}
+      {/* About */}
       <section id="about" className="mx-auto max-w-6xl px-6 py-28">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <div>
             <p className="text-sm uppercase tracking-[0.25em] text-primary">About</p>
             <h2 className="mt-4 font-display text-4xl font-medium leading-tight md:text-5xl">
-              Skills and passion, together, lead to results that last.
+              End-to-end WordPress work, from custom PHP to Core Web Vitals.
             </h2>
-            <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
-              <p>
-                I'm a reliable, professional web and software developer with expert-level knowledge of WordPress, Magento, Squarespace, Wix, Weebly, and Shopify. I design, develop, maintain, update, and secure websites end-to-end.
-              </p>
-              <p>
-                My aim has always been to produce websites that look beautiful and professional, are highly functional, fully responsive on every device, and load fast — without compromise.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-2">
-              {["WordPress", "Magento", "Laravel", "Shopify", "Azure", "AWS", "Google Cloud", "SSL / Nginx"].map((t) => (
-                <Badge key={t} variant="secondary" className="rounded-full bg-secondary/60 px-3 py-1">{t}</Badge>
-              ))}
-            </div>
           </div>
-          <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Skills</p>
-            <h3 className="mt-4 font-display text-2xl">Tools I work with daily</h3>
-            <div className="mt-8 space-y-5">
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  <div className="mb-2 flex justify-between text-sm">
-                    <span className="font-medium">{skill.name}</span>
-                    <span className="text-muted-foreground">{skill.level}%</span>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-primary to-accent transition-all"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
-                </div>
+          <div className="space-y-5 leading-relaxed text-muted-foreground">
+            <p>
+              WordPress developer with 3+ years building and integrating CMS-based and e-commerce platforms. My work spans WooCommerce store architecture, REST API integrations, role-based checkout workflows, and CMS-to-LMS connections with Moodle and Brancert.
+            </p>
+            <p>
+              That's backed by cloud infrastructure experience on AWS, Azure and Docker/Jenkins CI/CD — comfortable working from custom PHP and MySQL logic through to performance and SEO optimisation in fast-paced, fully remote agency environments.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-2">
+              {frontendSkills.map((t) => (
+                <Badge key={t} variant="secondary" className="rounded-full bg-secondary/60 px-3 py-1">{t}</Badge>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section id="services" className="border-t border-border/60 bg-surface/20 py-28">
+      {/* Competencies */}
+      <section id="skills" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Services</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What I can build for you</h2>
+            <p className="text-sm uppercase tracking-[0.25em] text-primary">Core Competencies</p>
+            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">What I bring to a build</h2>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((s) => (
-              <Card key={s.title} className="group relative overflow-hidden border-border/60 bg-card transition-all hover:border-primary/50 hover:-translate-y-1">
-                <CardContent className="p-6">
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {competencies.map((c) => (
+              <Card key={c.title} className="group border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
+                <CardContent className="p-7">
                   <div className="mb-5 grid h-11 w-11 place-items-center rounded-lg bg-primary/15 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <s.icon className="h-5 w-5" />
+                    <c.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display text-xl">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                  <h3 className="font-display text-xl">{c.title}</h3>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {c.items.map((i) => (
+                      <span key={i} className="rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">{i}</span>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -205,51 +268,72 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Portfolio */}
+      {/* Projects */}
       <section id="work" className="mx-auto max-w-6xl px-6 py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
             <p className="text-sm uppercase tracking-[0.25em] text-primary">Selected Work</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Recent projects</h2>
+            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Projects</h2>
           </div>
-          <p className="max-w-sm text-sm text-muted-foreground">A glimpse of live sites I've designed, built, or rescued for clients around the world.</p>
+          <p className="max-w-sm text-sm text-muted-foreground">Live sites I've built, integrated, or optimised for clients around the world.</p>
         </div>
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border md:grid-cols-2">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
-            <a key={p.name} href={p.url} target="_blank" rel="noreferrer"
-               className="group flex items-center justify-between bg-card p-7 transition-colors hover:bg-secondary/60">
-              <div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">{p.tag}</div>
-                <div className="mt-2 font-display text-2xl">{p.name}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{new URL(p.url).hostname}</div>
+            <a
+              key={p.name}
+              href={p.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
               </div>
-              <ArrowUpRight className="h-6 w-6 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+              <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+              <div className="mt-1 text-xs text-muted-foreground">{new URL(p.url).hostname}</div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
             </a>
           ))}
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section id="testimonials" className="border-t border-border/60 bg-surface/20 py-28">
+      {/* Education & Certifications */}
+      <section id="credentials" className="border-t border-border/60 bg-surface/20 py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-primary">Testimonials</p>
-            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Kind words from clients</h2>
+            <p className="text-sm uppercase tracking-[0.25em] text-primary">Credentials</p>
+            <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">Education &amp; certifications</h2>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t) => (
-              <Card key={t.name} className="border-border/60 bg-card">
-                <CardContent className="p-7">
-                  <Quote className="h-6 w-6 text-primary/60" />
-                  <p className="mt-4 text-sm leading-relaxed text-foreground/90">"{t.text}"</p>
-                  <div className="mt-6 flex items-center gap-3 border-t border-border/60 pt-4">
-                    <div className="grid h-9 w-9 place-items-center rounded-full bg-primary/15 font-semibold text-primary">
-                      {t.name.charAt(0)}
-                    </div>
-                    <div className="text-sm font-medium">{t.name}</div>
+          <Card className="mt-12 border-border/60 bg-card">
+            <CardContent className="flex items-start gap-4 p-7">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary">
+                <GraduationCap className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-display text-xl">B.Sc. Computer Science (Hons)</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Fatima Jinnah Women University, Rawalpindi — 2020</p>
+              </div>
+            </CardContent>
+          </Card>
+          <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border md:grid-cols-2">
+            {certifications.map((c) => (
+              <a
+                key={c.name}
+                href={c.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between gap-4 bg-card p-6 transition-colors hover:bg-secondary/60"
+              >
+                <div className="flex items-center gap-3">
+                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
+                  <div>
+                    <div className="text-sm font-medium">{c.name}</div>
+                    <div className="text-xs text-muted-foreground">{c.issuer}</div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
             ))}
           </div>
         </div>
@@ -266,20 +350,30 @@ function Portfolio() {
               <h2 className="mt-4 font-display text-4xl font-medium leading-tight md:text-5xl">
                 Let's build something <span className="gradient-text italic">exceptional</span>.
               </h2>
-              <p className="mt-5 text-muted-foreground">Have a project in mind, or need an expert hand on your existing site? I'd love to hear from you.</p>
+              <p className="mt-5 text-muted-foreground">
+                Have a WordPress or WooCommerce project, an API integration, or a site that needs rescuing? I'd love to hear from you.
+              </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="rounded-full">
-                  <a href="mailto:hafsazulf17@gmail.com"><Mail className="mr-2 h-4 w-4" /> Email me</a>
+                  <a href="mailto:zulfiqar277hafsa.ha@gmail.com"><Mail className="mr-2 h-4 w-4" /> Email me</a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-full">
+                  <a href="https://wa.me/923212578595" target="_blank" rel="noreferrer"><Phone className="mr-2 h-4 w-4" /> +92 321 2578595</a>
                 </Button>
               </div>
             </div>
             <div className="space-y-3">
               <p className="text-sm uppercase tracking-[0.25em] text-muted-foreground">Find me on</p>
-              {links.map((l) => (
-                <a key={l.label} href={l.url} target="_blank" rel="noreferrer"
-                   className="group flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4 transition-all hover:border-primary/50 hover:bg-background/80">
+              {profiles.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4 transition-all hover:border-primary/50 hover:bg-background/80"
+                >
                   <div className="flex items-center gap-3">
-                    <Globe className="h-4 w-4 text-primary" />
+                    {l.label === "LinkedIn" ? <Linkedin className="h-4 w-4 text-primary" /> : <Globe className="h-4 w-4 text-primary" />}
                     <span className="font-medium">{l.label}</span>
                   </div>
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -293,11 +387,11 @@ function Portfolio() {
       {/* Footer */}
       <footer className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-muted-foreground md:flex-row">
-          <div>© {new Date().getFullYear()} Hafsa Zulfiqar — HZ Tech. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Hafsa Zulfiqar. All rights reserved.</div>
           <div className="flex items-center gap-4">
-            <a href="https://www.upwork.com/freelancers/~017d31b576065d8a33" target="_blank" rel="noreferrer" className="hover:text-foreground"><Briefcase className="h-4 w-4" /></a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className="hover:text-foreground"><Linkedin className="h-4 w-4" /></a>
-            <a href="https://github.com/hafsazulf17" target="_blank" rel="noreferrer" className="hover:text-foreground"><Github className="h-4 w-4" /></a>
+            <a href="https://www.linkedin.com/in/hafsa-zulfiqar-149812160/" target="_blank" rel="noreferrer" className="hover:text-foreground"><Linkedin className="h-4 w-4" /></a>
+            <a href="mailto:zulfiqar277hafsa.ha@gmail.com" className="hover:text-foreground"><Mail className="h-4 w-4" /></a>
+            <a href="https://hafsazulf17.github.io/hafsazulf" target="_blank" rel="noreferrer" className="hover:text-foreground"><Globe className="h-4 w-4" /></a>
           </div>
         </div>
       </footer>
