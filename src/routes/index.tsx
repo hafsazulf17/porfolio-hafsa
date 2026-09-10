@@ -230,6 +230,7 @@ function Portfolio() {
             <a href="#about" className="transition-colors hover:text-foreground">About</a>
             <a href="#skills" className="transition-colors hover:text-foreground">Skills</a>
             <a href="#work" className="transition-colors hover:text-foreground">Projects</a>
+            <a href="#testimonials" className="transition-colors hover:text-foreground">Testimonials</a>
             <a href="#credentials" className="transition-colors hover:text-foreground">Credentials</a>
           </div>
           <Button asChild size="sm" className="rounded-full">
