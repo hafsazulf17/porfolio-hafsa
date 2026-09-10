@@ -459,6 +459,39 @@ function HeroSlideshow() {
   );
 }
 
+function TestimonialGrid() {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? testimonials : testimonials.slice(0, 6);
+
+  return (
+    <>
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {visible.map((t) => (
+          <Card key={t.name} className="relative overflow-hidden border-border/60 bg-card transition-all hover:-translate-y-1 hover:border-primary/50">
+            <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/20" />
+            <CardContent className="flex h-full flex-col p-7">
+              <p className="flex-1 text-sm leading-relaxed text-muted-foreground">“{t.quote}”</p>
+              <div className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
+                <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 font-display text-sm font-semibold text-primary">
+                  {t.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+                </div>
+                <div className="font-medium">{t.name}</div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      {testimonials.length > 6 && (
+        <div className="mt-10 text-center">
+          <Button variant="outline" onClick={() => setShowAll((s) => !s)} className="rounded-full px-6">
+            {showAll ? "Show less" : `Show all ${testimonials.length} testimonials`}
+          </Button>
+        </div>
+      )}
+    </>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
