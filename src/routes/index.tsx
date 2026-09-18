@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useCallback } from "react";
 import {
   ArrowUpRight,
@@ -103,6 +103,13 @@ const projects = [
     url: "https://hafsazulf17.github.io/azeem/",
     tag: "React + Tailwind CSS",
     desc: "Modern single-page portfolio for a structural engineer, built with React and Tailwind CSS — responsive sections, smooth scrolling and a clean component-driven layout.",
+  },
+  {
+    name: "TaskFlow — React Dashboard Demo",
+    url: "/projects/taskflow",
+    tag: "React + Tailwind CSS",
+    internal: true,
+    desc: "An interactive dashboard built to showcase React and Tailwind CSS skills — live task management with hooks, animated stat counters, a custom chart and a responsive dark UI. Fully interactive, right on this site.",
   },
   {
     name: "Targheeb",
@@ -630,23 +637,39 @@ function Portfolio() {
         </a>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(1).map((p) => (
-            <a
-              key={p.name}
-              href={p.url}
-              target="_blank"
-              rel="noreferrer"
-              className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
-                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-              </div>
-              <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
-              <div className="mt-1 text-xs text-muted-foreground">{new URL(p.url).hostname}</div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-            </a>
-          ))}
+          {projects.slice(1).map((p) =>
+            "internal" in p ? (
+              <Link
+                key={p.name}
+                to={p.url}
+                className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                  <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+                <div className="mt-1 text-xs text-primary">Live demo · built into this site</div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              </Link>
+            ) : (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                  <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+                <div className="mt-1 text-xs text-muted-foreground">{new URL(p.url).hostname}</div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              </a>
+            )
+          )}
         </div>
       </section>
 
