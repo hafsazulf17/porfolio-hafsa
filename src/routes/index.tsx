@@ -138,14 +138,14 @@ const projects = [
     name: "Eco2Bureau",
     url: "https://eco2.ca/",
     tag: "B2B / Quotes",
-    categories: ["WordPress"],
+    categories: ["WordPress", "WooCommerce"],
     desc: "Request-a-Quote system for retail and wholesale customers with role-based login, customer dashboards, custom pricing workflows and SuiteCRM setup.",
   },
   {
     name: "Unlock My Sim",
     url: "https://unlockmysim.com/",
     tag: "Front-end",
-    categories: ["WordPress"],
+    categories: ["WordPress", "WooCommerce"],
     desc: "Product pages, detail views and a custom checkout layout delivered through a bespoke child theme.",
   },
   {
