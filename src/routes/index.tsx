@@ -517,6 +517,109 @@ function TestimonialGrid() {
   );
 }
 
+const projectCategories = ["All", "React", "WordPress", "WooCommerce", "Magento", "Joomla", "Moodle"];
+
+function ProjectGallery() {
+  const [activeTab, setActiveTab] = useState("All");
+
+  const filtered =
+    activeTab === "All" ? projects : projects.filter((p) => p.categories.includes(activeTab));
+  const featured = filtered.find((p) => p === projects[0]);
+  const rest = filtered.filter((p) => p !== projects[0]);
+
+  return (
+    <>
+      {/* Filter tabs */}
+      <div className="mt-10 flex flex-wrap items-center gap-2">
+        {projectCategories.map((cat) => {
+          const count = cat === "All" ? projects.length : projects.filter((p) => p.categories.includes(cat)).length;
+          const isActive = activeTab === cat;
+          return (
+            <button
+              key={cat}
+              onClick={() => setActiveTab(cat)}
+              aria-pressed={isActive}
+              className={`rounded-full border px-4 py-2 text-sm transition-all ${
+                isActive
+                  ? "border-primary bg-primary/15 text-primary shadow-[0_0_18px_-6px] shadow-primary/50"
+                  : "border-border/60 bg-card text-muted-foreground hover:-translate-y-0.5 hover:border-primary/40 hover:text-foreground"
+              }`}
+            >
+              {cat}
+              <span className={`ml-1.5 text-xs ${isActive ? "text-primary/80" : "text-muted-foreground/60"}`}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {filtered.length === 0 ? (
+        <p className="mt-14 text-sm text-muted-foreground">No projects in this category yet.</p>
+      ) : (
+        <>
+          {/* Featured project */}
+          {featured && (
+            <a
+              href={featured.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative mt-10 flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 md:flex-row md:items-center md:gap-10 md:p-10"
+            >
+              <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
+              <div className="relative flex-1">
+                <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">
+                  Featured · {featured.tag}
+                </Badge>
+                <h3 className="mt-4 font-display text-3xl md:text-4xl">{featured.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{new URL(featured.url).hostname}</p>
+                <p className="mt-4 max-w-xl text-muted-foreground">{featured.desc}</p>
+              </div>
+              <ArrowUpRight className="relative mt-6 h-8 w-8 shrink-0 text-primary transition-all group-hover:-translate-y-1 group-hover:translate-x-1 md:mt-0" />
+            </a>
+          )}
+
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {rest.map((p) =>
+              "internal" in p ? (
+                <Link
+                  key={p.name}
+                  to={p.url}
+                  className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+                  <div className="mt-1 text-xs text-primary">Live demo · built into this site</div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </Link>
+              ) : (
+                <a
+                  key={p.name}
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+                  <div className="mt-1 text-xs text-muted-foreground">{new URL(p.url).hostname}</div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </a>
+              )
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
