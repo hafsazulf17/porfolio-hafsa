@@ -102,12 +102,14 @@ const projects = [
     name: "Azeem — Structural Engineer Portfolio",
     url: "https://hafsazulf17.github.io/azeem/",
     tag: "React + Tailwind CSS",
+    categories: ["React"],
     desc: "Modern single-page portfolio for a structural engineer, built with React and Tailwind CSS — responsive sections, smooth scrolling and a clean component-driven layout.",
   },
   {
     name: "TaskFlow — React Dashboard Demo",
     url: "/projects/taskflow",
     tag: "React + Tailwind CSS",
+    categories: ["React"],
     internal: true,
     desc: "An interactive dashboard built to showcase React and Tailwind CSS skills — live task management with hooks, animated stat counters, a custom chart and a responsive dark UI. Fully interactive, right on this site.",
   },
@@ -115,60 +117,70 @@ const projects = [
     name: "SaGuarda Studios",
     url: "https://www.saguardastudios.com/",
     tag: "Joomla — HTML to Joomla",
+    categories: ["Joomla"],
     desc: "HTML to Joomla conversion for a boutique film and video production company — custom Helix Ultimate template, SP Page Builder sections and a fully CMS-managed site the client can update themselves.",
   },
   {
     name: "Targheeb",
     url: "https://targheeb.com/",
     tag: "LMS Integration",
+    categories: ["WordPress", "Moodle"],
     desc: "Connected Moodle LMS to WordPress via API and integrated the Brancert API for live class scheduling with automated student notifications.",
   },
   {
     name: "Gold Star Social Media",
     url: "https://goldstarsocialmedia.com/",
     tag: "WooCommerce",
+    categories: ["WooCommerce", "WordPress"],
     desc: "End-to-end WooCommerce digital product store with payment gateway integration and full checkout configuration.",
   },
   {
     name: "Eco2Bureau",
     url: "https://eco2.ca/",
     tag: "B2B / Quotes",
+    categories: ["WordPress"],
     desc: "Request-a-Quote system for retail and wholesale customers with role-based login, customer dashboards, custom pricing workflows and SuiteCRM setup.",
   },
   {
     name: "Unlock My Sim",
     url: "https://unlockmysim.com/",
     tag: "Front-end",
+    categories: ["WordPress"],
     desc: "Product pages, detail views and a custom checkout layout delivered through a bespoke child theme.",
   },
   {
     name: "e-Karnizai",
     url: "https://e-karnizai.lt/",
     tag: "SEO & Landing Pages",
+    categories: ["WordPress"],
     desc: "Elementor Pro landing pages plus Search Console fixes — canonical tags, sitemap updates and 301 redirects that cleared duplicate-URL issues.",
   },
   {
     name: "Acorn Health & Safety",
     url: "https://acornhealthandsafety.co.uk/",
     tag: "Genesis Framework",
+    categories: ["WordPress"],
     desc: "Corporate site built on the Genesis Framework with a fully custom child theme.",
   },
   {
     name: "TCBS Senior School",
     url: "https://senior.tcbs.sc.ke/",
     tag: "Education",
+    categories: ["WordPress"],
     desc: "School website built with WordPress and page-builder tooling.",
   },
   {
     name: "TCBS Junior School",
     url: "https://junior.tcbs.sc.ke/",
     tag: "Education",
+    categories: ["WordPress"],
     desc: "Companion junior-school site sharing the same design system and build approach.",
   },
   {
     name: "Ekelund",
     url: "https://ekelund.se/",
     tag: "Magento 2",
+    categories: ["Magento"],
     desc: "Magento 2 theme customisation for a B2C and B2B store, with AWS infrastructure and Jenkins deployments.",
   },
 ];
@@ -505,6 +517,109 @@ function TestimonialGrid() {
   );
 }
 
+const projectCategories = ["All", "React", "WordPress", "WooCommerce", "Magento", "Joomla", "Moodle"];
+
+function ProjectGallery() {
+  const [activeTab, setActiveTab] = useState("All");
+
+  const filtered =
+    activeTab === "All" ? projects : projects.filter((p) => p.categories.includes(activeTab));
+  const featured = filtered.find((p) => p === projects[0]);
+  const rest = filtered.filter((p) => p !== projects[0]);
+
+  return (
+    <>
+      {/* Filter tabs */}
+      <div className="mt-10 flex flex-wrap items-center gap-2">
+        {projectCategories.map((cat) => {
+          const count = cat === "All" ? projects.length : projects.filter((p) => p.categories.includes(cat)).length;
+          const isActive = activeTab === cat;
+          return (
+            <button
+              key={cat}
+              onClick={() => setActiveTab(cat)}
+              aria-pressed={isActive}
+              className={`rounded-full border px-4 py-2 text-sm transition-all ${
+                isActive
+                  ? "border-primary bg-primary/15 text-primary shadow-[0_0_18px_-6px] shadow-primary/50"
+                  : "border-border/60 bg-card text-muted-foreground hover:-translate-y-0.5 hover:border-primary/40 hover:text-foreground"
+              }`}
+            >
+              {cat}
+              <span className={`ml-1.5 text-xs ${isActive ? "text-primary/80" : "text-muted-foreground/60"}`}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {filtered.length === 0 ? (
+        <p className="mt-14 text-sm text-muted-foreground">No projects in this category yet.</p>
+      ) : (
+        <>
+          {/* Featured project */}
+          {featured && (
+            <a
+              href={featured.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative mt-10 flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 md:flex-row md:items-center md:gap-10 md:p-10"
+            >
+              <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
+              <div className="relative flex-1">
+                <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">
+                  Featured · {featured.tag}
+                </Badge>
+                <h3 className="mt-4 font-display text-3xl md:text-4xl">{featured.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{new URL(featured.url).hostname}</p>
+                <p className="mt-4 max-w-xl text-muted-foreground">{featured.desc}</p>
+              </div>
+              <ArrowUpRight className="relative mt-6 h-8 w-8 shrink-0 text-primary transition-all group-hover:-translate-y-1 group-hover:translate-x-1 md:mt-0" />
+            </a>
+          )}
+
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {rest.map((p) =>
+              "internal" in p ? (
+                <Link
+                  key={p.name}
+                  to={p.url}
+                  className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+                  <div className="mt-1 text-xs text-primary">Live demo · built into this site</div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </Link>
+              ) : (
+                <a
+                  key={p.name}
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
+                  <div className="mt-1 text-xs text-muted-foreground">{new URL(p.url).hostname}</div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </a>
+              )
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -625,58 +740,7 @@ function Portfolio() {
           <p className="max-w-sm text-sm text-muted-foreground">Live sites I've built, integrated, or optimised for clients around the world.</p>
         </div>
 
-        {/* Featured project */}
-        <a
-          href={projects[0].url}
-          target="_blank"
-          rel="noreferrer"
-          className="group relative mt-14 flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 md:flex-row md:items-center md:gap-10 md:p-10"
-        >
-          <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
-          <div className="relative flex-1">
-            <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">Featured · {projects[0].tag}</Badge>
-            <h3 className="mt-4 font-display text-3xl md:text-4xl">{projects[0].name}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{new URL(projects[0].url).hostname}</p>
-            <p className="mt-4 max-w-xl text-muted-foreground">{projects[0].desc}</p>
-          </div>
-          <ArrowUpRight className="relative mt-6 h-8 w-8 shrink-0 text-primary transition-all group-hover:-translate-y-1 group-hover:translate-x-1 md:mt-0" />
-        </a>
-
-        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(1).map((p) =>
-            "internal" in p ? (
-              <Link
-                key={p.name}
-                to={p.url}
-                className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
-                  <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-                </div>
-                <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
-                <div className="mt-1 text-xs text-primary">Live demo · built into this site</div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-              </Link>
-            ) : (
-              <a
-                key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col rounded-2xl border border-border/60 bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/10 text-xs text-primary">{p.tag}</Badge>
-                  <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-                </div>
-                <h3 className="mt-5 font-display text-2xl">{p.name}</h3>
-                <div className="mt-1 text-xs text-muted-foreground">{new URL(p.url).hostname}</div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-              </a>
-            )
-          )}
-        </div>
+        <ProjectGallery />
       </section>
 
       {/* Testimonials */}
