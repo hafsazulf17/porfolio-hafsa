@@ -112,6 +112,12 @@ const projects = [
     desc: "An interactive dashboard built to showcase React and Tailwind CSS skills — live task management with hooks, animated stat counters, a custom chart and a responsive dark UI. Fully interactive, right on this site.",
   },
   {
+    name: "SaGuarda Studios",
+    url: "https://www.saguardastudios.com/",
+    tag: "Joomla — HTML to Joomla",
+    desc: "HTML to Joomla conversion for a boutique film and video production company — custom Helix Ultimate template, SP Page Builder sections and a fully CMS-managed site the client can update themselves.",
+  },
+  {
     name: "Targheeb",
     url: "https://targheeb.com/",
     tag: "LMS Integration",
