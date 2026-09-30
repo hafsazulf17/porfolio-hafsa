@@ -183,6 +183,27 @@ const projects = [
     categories: ["Magento"],
     desc: "Magento 2 theme customisation for a B2C and B2B store, with AWS infrastructure and Jenkins deployments.",
   },
+  {
+    name: "ArchiveBox — Cloud Server Setup",
+    url: "https://www.peopleperhour.com/freelance-jobs/technology-programming/programming-coding/install-set-up-archivebox-3390792",
+    tag: "Cloud & Server Management",
+    categories: ["Cloud"],
+    desc: "Installed and fully configured ArchiveBox on a DigitalOcean droplet — server setup, deployment and configuration for self-hosted web archiving.",
+  },
+  {
+    name: "Cape Cornwall Club",
+    url: "https://capecornwallclub.com/",
+    tag: "Elementor",
+    categories: ["WordPress"],
+    desc: "Formatting and layout of pages with the Elementor page builder — cleaned-up sections, consistent styling and a polished responsive presentation.",
+  },
+  {
+    name: "KSLS",
+    url: "https://www.ksls.co.uk/",
+    tag: "WordPress + Elementor",
+    categories: ["WordPress"],
+    desc: "Elementor page builder site built on WordPress — custom page layouts, section styling and a fully editable website for the client.",
+  },
 ];
 
 const testimonials = [
@@ -517,7 +538,7 @@ function TestimonialGrid() {
   );
 }
 
-const projectCategories = ["All", "React", "WordPress", "WooCommerce", "Magento", "Joomla", "Moodle"];
+const projectCategories = ["All", "React", "WordPress", "WooCommerce", "Magento", "Joomla", "Moodle", "Cloud"];
 
 function ProjectGallery() {
   const [activeTab, setActiveTab] = useState("All");
