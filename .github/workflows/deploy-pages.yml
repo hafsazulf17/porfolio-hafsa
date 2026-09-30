@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
 
 concurrency:
   group: pages
@@ -19,6 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Switch Pages source to GitHub Actions (stop README publishing)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X PUT "repos/${{ github.repository }}/pages" -f build_type=workflow \
+            && echo "Pages source set to GitHub Actions" \
+            || echo "Could not change Pages source automatically"
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - name: Build static site
@@ -45,5 +54,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Wait for any README (branch) publish to finish so the portfolio deploys last
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 30); do
+            ACTIVE=$(gh api "repos/${{ github.repository }}/actions/runs?per_page=20" \
+              --jq '[.workflow_runs[] | select(.name=="pages build and deployment" and .status!="completed")] | length' || echo 0)
+            if [ "$ACTIVE" = "0" ]; then echo "No branch publish running"; break; fi
+            echo "Branch publish still running, waiting..."; sleep 10
+          done
       - id: deployment
         uses: actions/deploy-pages@v4
