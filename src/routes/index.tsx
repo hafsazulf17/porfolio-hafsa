@@ -151,9 +151,9 @@ const projects = [
   {
     name: "e-Karnizai",
     url: "https://e-karnizai.lt/",
-    tag: "SEO & Landing Pages",
-    categories: ["WordPress"],
-    desc: "Elementor Pro landing pages plus Search Console fixes — canonical tags, sitemap updates and 301 redirects that cleared duplicate-URL issues.",
+    tag: "SEO",
+    categories: ["SEO"],
+    desc: "Fixed Search Console errors — resolved indexing issues, updated robots.txt and sitemap settings to clear duplicate-URL problems.",
   },
   {
     name: "Acorn Health & Safety",
@@ -538,7 +538,7 @@ function TestimonialGrid() {
   );
 }
 
-const projectCategories = ["All", "React", "WordPress", "WooCommerce", "Magento", "Joomla", "Moodle", "Cloud"];
+const projectCategories = ["All", "React", "WordPress", "WooCommerce", "Magento", "Joomla", "Moodle", "Cloud", "SEO"];
 
 function ProjectGallery() {
   const [activeTab, setActiveTab] = useState("All");
